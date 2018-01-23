@@ -18,10 +18,6 @@ public class Main {
 	System.out.println("El angulo es: " + punto.angulo());
     }
 
-    fecha.showDate();
-  //  System.out.println(fecha.getDay());
-  //  System.out.println(fecha.getMonth());
-  //  System.out.println(fecha.getYear());
 }
 
 
@@ -78,32 +74,41 @@ public class Main {
 
     }
 
-    class Date {                                                               //Punto 3 del taller
-
-      private int day;
-      private int month;
-      private int year;
-
-      public Date(int day, int month, int year) {
+public class fecha {
+    private String day;
+    private String month;
+    private String year;
+    private String cadena;
+    
+    public fecha(String day, String month, String year){
         this.day = day;
         this.month = month;
         this.year = year;
-      }
-
-      public int getDay() {
+        cadena= year+month+day;
+    }
+    public String getDay(){
         return day;
-      }
-
-      public int getMonth() {
+    }
+    
+    public String getCadena(){
+        return cadena;
+    }
+    
+    public String getMonth(){
         return month;
-      }
-
-      public int getYear() {
+    }
+    
+    public String getYear(){
         return year;
-      }
-
-      public void showDate() {
-        System.out.println(day + "/" + month + "/" + year);
-      }
-
+    }
+    
+    public String comparar(fecha cadena1,fecha cadena2){
+           
+            if(Integer.parseInt(cadena1.getCadena()) > Integer.parseInt(cadena2.getCadena()))
+                return "La primera fecha es mayor que la segunda";
+            
+            if(cadena1.getCadena().equals(cadena2.getCadena()))
+                return "Ambas fechas son iguales";
+            
+           return "La primera fecha es menor que la segunda";
     }
