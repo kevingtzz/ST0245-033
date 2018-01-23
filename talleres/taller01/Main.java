@@ -6,7 +6,7 @@ public class Main {
 
 	Punto2D punto = new Punto2D(15,23);
 	Counter count = new Counter(cont);
-  Date fecha = new Date(7,11,1995);
+  Date fecha = new Date(7,11,1998);
 
 	for (int i = 0; i < 10; ++i) {
 	    count.incrementar();
