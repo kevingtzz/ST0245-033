@@ -6,8 +6,9 @@ public class Main {
 
 	Punto2D punto = new Punto2D(15,23);
 	Counter count = new Counter(cont);
-  Date fecha = new Date(7,11,1998);
-
+        fecha a = new fecha("04", "24", "2000");
+        fecha b = new fecha("14", "12", "1994");
+        
 	for (int i = 0; i < 10; ++i) {
 	    count.incrementar();
 	}
@@ -16,6 +17,9 @@ public class Main {
 	System.out.println("El radio es: " + punto.radio());
 	System.out.println("La distancia euclidiana es: " + punto.distacia(5,10));
 	System.out.println("El angulo es: " + punto.angulo());
+        System.out.println(a.comparar(a, b));
+        System.out.println("la primera fecha es: "+a.getDay()+"/"+a.getMonth()+"/"+a.getYear());
+        System.out.println("la segunda fecha es: "+b.getDay()+"/"+b.getMonth()+"/"+b.getYear());
     }
 
 }
@@ -74,7 +78,7 @@ public class Main {
 
     }
 
-public class fecha {
+class fecha {									//Punto 3 de el taller
     private String day;
     private String month;
     private String year;
@@ -112,3 +116,4 @@ public class fecha {
             
            return "La primera fecha es menor que la segunda";
     }
+}
