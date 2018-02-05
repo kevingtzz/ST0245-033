@@ -15,11 +15,11 @@ def subset(s, base = ""):
         subset(s[1:], base + s[0])
         subset(s[1:], base)
 
-def permutations(s, base = ""):
-    if len(s) == 0:
+def permutations(base, str):
+    if len(str) == 0:
         print base
     else:
         i = 0
-        while i < len(s):
-            permutations(base + s[i], s[0:i] + s[i+1:])
+        while i < len(str):
+            permutations(base + str[i], str[0:i] + str[i+1:])
             i = i + 1
