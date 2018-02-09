@@ -39,8 +39,7 @@ def arrayMax_aux(arr, i, max):
     else:
         if arr[i] > max:
             max = arr[i]
-            print max
-            return arrayMax_aux(arr, i+1, max)
+        return arrayMax_aux(arr, i+1, max)
 
 arr = [1,2,3,4,55,6,7,8]
 print arrayMax(arr)
