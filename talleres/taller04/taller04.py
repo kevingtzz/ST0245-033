@@ -41,5 +41,10 @@ def arrayMax_aux(arr, i, max):
             max = arr[i]
         return arrayMax_aux(arr, i+1, max)
 
-arr = [1,2,3,4,55,6,7,8]
-print arrayMax(arr)
+def groupSum_aux(list, start, target):
+    if start >= len(list): return target == 0
+    return groupSum_aux(list, start + 1, target - list[start]) \
+            or groupSum_aux(list, start + 1, target)
+
+def groupSum(list, target):
+    return groupSum_aux(list, 0, target)
