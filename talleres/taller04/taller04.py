@@ -1,5 +1,7 @@
 #!/usr/bin/python
 import random
+import pylab as pl
+import time
 
 def array_generator(len):
     """List generator"""
@@ -49,6 +51,31 @@ def groupSum_aux(list, start, target):
 def groupSum(list, target):
     return groupSum_aux(list, 0, target)
 
-def fibonacci(n):
+#----------------------------Fibonacci---------------------------------#
+
+def fib_r(n):                             #Fibonacci recursivo
     if n <= 1: return n
     return fibonacci(n-1) + fibonacci(n-2)
+
+def fib_i(n):               #Fibonacci iterativo
+    a, b = 0, 1
+    for i in range(n):
+        a, b = b, a+b
+        return a
+
+X,Y,Z = [],[],[]
+
+for i in range(30):
+    X.append(i)
+    t = time.time()
+    Z.append(fibonacci(i))
+    Y.append(time.time()-t)
+
+print(Z) #sucession de Fibonacci
+pl.xlabel('Numero de Fibonacci')
+pl.ylabel('Tiempo de ejecucion')
+pl.title('Fibonacci')
+pl.plot(X,Y,'r') # n(Dominio) contra tiempo(Rango)
+pl.legend(( 'Complejidad_recursion', ) )
+pl.savefig("Fibor.png")  # produce a .png file
+pl.show()
