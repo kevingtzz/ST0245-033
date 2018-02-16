@@ -1,6 +1,6 @@
 #!/usr/bin/python
 import random
-import pylab as pl
+from matplotlib import pyplot as pl
 import time
 
 def array_generator(len):
@@ -21,8 +21,8 @@ def array_sum(array, sum = 0):
 def multiplication_tables(n):
     for i in range(1,n + 1):
         for j in range(1,n + 1):
-            print str(i) + " * " + str(j) + " = " + str(i*j)
-        print "--------------------"
+            print (str(i) + " * " + str(j) + " = " + str(i*j))
+        print ("--------------------")
 
 def insertion_sort(list):
     for index in range(len(list)):
@@ -55,27 +55,37 @@ def groupSum(list, target):
 
 def fib_r(n):                             #Fibonacci recursivo
     if n <= 1: return n
-    return fibonacci(n-1) + fibonacci(n-2)
+    return fib_r(n-1) + fib_r(n-2)
 
 def fib_i(n):               #Fibonacci iterativo
     a, b = 0, 1
     for i in range(n):
         a, b = b, a+b
-        return a
+    return a
 
-X,Y,Z = [],[],[]
+Xr,Yr,Zr = [],[],[]
+Xi,Yi,Zi = [],[],[]
 
-for i in range(30):
-    X.append(i)
+for i in range(15):
+    Xr.append(i)
     t = time.time()
-    Z.append(fibonacci(i))
-    Y.append(time.time()-t)
+    Zr.append(fib_r(i))
+    Yr.append(time.time()-t)
 
-print(Z) #sucession de Fibonacci
+for i in range(100):
+    Xi.append(i)
+    t = time.time()
+    Zi.append(fib_i(i))
+    Yi.append(time.time()-t)
+
+print(Zr) #this print all i's fibonacci i a  list
+print(Zi)
 pl.xlabel('Numero de Fibonacci')
 pl.ylabel('Tiempo de ejecucion')
-pl.title('Fibonacci')
-pl.plot(X,Y,'r') # n(Dominio) contra tiempo(Rango)
-pl.legend(( 'Complejidad_recursion', ) )
+pl.title('Recursive fibonacci vs interative fibonacci')
+pl.plot(Xr,Yr,'r') # domain of x(n) vs time
+pl.legend(( 'Recursive', ) )
+pl.plot(Xi,Yi,'b')
+pl.legend(( 'interative'))
 pl.savefig("Fibor.png")  # produce a .png file
 pl.show()
