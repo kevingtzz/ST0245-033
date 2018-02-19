@@ -2,12 +2,19 @@ import java.util.Random;
 import java.math.BigInteger;
 
 /**lab01 class declaration.
-*@author: Kevin Gutierrez Gomez
-*@version: 18/02/18
+*@author Kevin Gutierrez Gomez
+*@author Jose Villamizar
+*@version 2.0
+*@since taller04 1.2.0
 */
 
 public class lab01 {
 
+/**
+*This function generates an array with n random values.
+*@param Requires an int n that will be the length of the desired array
+*@return Array length n with random values inside.
+*/
 public static int[] array_generator(int n) {
     int[] arr = new int[n];
     Random ran = new Random();
@@ -17,6 +24,11 @@ public static int[] array_generator(int n) {
     return arr;
 }
 
+/**
+*This function adds the values of the given array.
+*@param Requires an integer array
+*@return The sum of the all values inside the array.
+*/
 public static BigInteger array_sum(int[] array) {
   BigInteger sum = new BigInteger("0");
   return array_sum_aux(array, 0, sum);
@@ -24,27 +36,38 @@ public static BigInteger array_sum(int[] array) {
 
 private static BigInteger array_sum_aux(int[] array, int i, BigInteger sum) {
   if (i >= array.length) return sum;
-  sum.add(new BigInteger(Integer.toString(array[i])));
+  System.out.println(i);
+  sum = sum.add(new BigInteger(Integer.toString(array[i])));
   return array_sum_aux(array, i + 1, sum);
 }
 
+/**
+*This function evaluates the maximum value in the array.
+*@param Requires an integer array
+*@return the maximum value of the given array.
+*/
 public static int array_max(int[] array) {
   return array_max_aux(array, 0, 0);
 }
 
-public static int array_max_aux(int[] array, int i, int max) {
+private static int array_max_aux(int[] array, int i, int max) {
   if (i >= array.length) return max;
   if (array[i] > max) max = array[i];
   return array_max_aux(array, i + 1, max);
 }
 
+/**
+*This function represents succession of Fibonacci.
+*@param Requiers an integer value.
+*@return the (n)th fibonacci integer.
+*/
+public static int fibonacci(int n) {
+  if (n <= 1) return n;
+  return fibonacci(n-2) + fibonacci(n-1);
+}
 
   public static void main (String args []) {
-    int[] arr = array_generator(100000000);
-    for (int i = 0; i < arr.length; ++i) {
-      System.out.print(arr[i] + ", ");
-    }
-
-    System.out.println(array_sum(arr));
+    //int[] arr = array_generator(100000000);
+    //System.out.println(array_sum(arr));
   }
 }
