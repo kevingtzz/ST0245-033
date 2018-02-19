@@ -28,6 +28,16 @@ private static BigInteger array_sum_aux(int[] array, int i, BigInteger sum) {
   return array_sum_aux(array, i + 1, sum);
 }
 
+public static int array_max(int[] array) {
+  return array_max_aux(array, 0, 0);
+}
+
+public static int array_max_aux(int[] array, int i, int max) {
+  if (i >= array.length) return max;
+  if (array[i] > max) max = array[i];
+  return array_max_aux(array, i + 1, max);
+}
+
 
   public static void main (String args []) {
     int[] arr = array_generator(100000000);
