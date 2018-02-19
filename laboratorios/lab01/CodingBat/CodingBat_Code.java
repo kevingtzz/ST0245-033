@@ -136,6 +136,31 @@ public boolean groupSum5(int start, int[] nums, int target) {
     || groupSum5(start + 1, nums, target - nums[start]);
 }
 
+public boolean groupSumClump(int start, int[] nums, int target) {
+  if (start >= nums.length) return target == 0;
+  int sum = nums[start];
+  int count = 1;
+  for (int i = start + 1; i < nums.length; i++)
+    if (nums[i] == nums[start]) {
+      sum += nums[i];
+      count++;
+  }
+  return groupSumClump(start + count, nums, target - sum)
+      || groupSumClump(start + count, nums, target);
+}
+
+public boolean splitArray(int[] nums) {
+ return splitArray_aux(0, nums, 0, 0);
+}
+
+private boolean splitArray_aux(int start, int[] nums, int sum1, int sum2) {
+   if (start >= nums.length) return sum1 == sum2;
+   return splitArray_aux(start + 1, nums, sum1 + nums[start], sum2)
+       || splitArray_aux(start + 1, nums, sum1, sum2 + nums[start]);
+}
+
+
+
 public static void main (String args[]) {
 
   }
