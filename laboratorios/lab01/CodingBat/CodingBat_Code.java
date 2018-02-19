@@ -107,12 +107,6 @@ public String pairStar(String str) {
 
 //--------------------------Recursion 2---------------------------------------//
 
-public boolean groupSum(int start, int[] nums, int target) {
-    return (start == nums.length) ? target == 0
-     : groupSum(start + 1, nums, target)
-      || groupSum(start + 1, nums, target - nums[start]);
-}
-
 public boolean groupSum6(int start, int[] nums, int target) {
   if (start >= nums.length) return target == 0;
   if (nums[start] == 6) return groupSum6(start +1, nums, target - nums[start]);
