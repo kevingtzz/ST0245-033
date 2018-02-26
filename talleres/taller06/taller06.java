@@ -1,5 +1,6 @@
 /*
-*
+*@author Kevin Gutierrez Gomez
+*@version 1.0
 */
 
 public class ArrayList<T> {
@@ -9,22 +10,23 @@ public class ArrayList<T> {
 
   public ArrayList() {
     this.elements = (T[]) new Object[DEFAULT_CAPACITY];
-    size = 0;
+    size = 0; // en realidad es un apuntador
   }
 
-  public int size() {
+  public int size() { //objeto.size()
     return size;
+  }
+
+  public T get(int i) {
+    return (i < size && i >= 0)
+    ?elements[i]
+    :trow new IndexOutOfBoundsException("Out of bounds "+i);
   }
 
   public void add(T e) {
     add(size,e);
   }
 
-  public T get(int i) {
-    return (i < size && i >= 0)
-      ?elements[i]
-      :trow new IndexOutOfBoundsException("Out of bounds "+i);
-  }
 
   public void add(int index, T e) {
     if (size == elements.length) {
@@ -32,11 +34,11 @@ public class ArrayList<T> {
       for (int i = 0, i < size; ++i) {
         arraytmp[i] = elements[i];
       }
+      elements = arraytmp;
     }
-    for (int i = size+1; i > index; --i) {
-      T tmp = elements[i];
-
-
+    for (int i = size; i > index; --i) {
+      elements[i] = elements[i-1];
     }
+    elements[index] = e;
   }
 }
