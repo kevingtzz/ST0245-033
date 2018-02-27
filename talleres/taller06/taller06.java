@@ -3,7 +3,7 @@
 *@version 1.0
 */
 
-public class ArrayList<T> {
+class ArrayList<T> {
   private int size;
   private static final int DEFAULT_CAPACITY = 10;
   private T elements[];
@@ -17,10 +17,12 @@ public class ArrayList<T> {
     return size;
   }
 
-  public T get(int i) {
-    return (i < size && i >= 0)
-    ?elements[i]
-    :trow new IndexOutOfBoundsException("Out of bounds "+i);
+  public T get(int i) throws Exception {
+    if (i < size && i >= 0) {
+      return elements[i];
+    } else {
+    throw new Exception("Out of bounds "+i);
+    }
   }
 
   public void add(T e) {
@@ -30,8 +32,8 @@ public class ArrayList<T> {
 
   public void add(int index, T e) {
     if (size == elements.length) {
-      T[] arraytmp = (T[]) new object[size*2];
-      for (int i = 0, i < size; ++i) {
+      T[] arraytmp = (T[]) new Object[size*2];
+      for (int i = 0; i < size; ++i) {
         arraytmp[i] = elements[i];
       }
       elements = arraytmp;
