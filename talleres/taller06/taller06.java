@@ -42,5 +42,6 @@ class ArrayList<T> {
       elements[i] = elements[i-1];
     }
     elements[index] = e;
+    size++;
   }
 }
