@@ -68,90 +68,80 @@ def Ifibonacci(n):
         a, b = b, a+b
     return a
 
+def insertion_sort(array):
+    """(list) -> List
+    returns the same list but sorted ascending."""
+    for index in range(len(array)):
+        for j in range(index,0,-1):
+            if array[j-1] > array[j]:
+                tmp = array[j]
+                array[j] = array[j-1]
+                array[j-1] = tmp
+
+def mergeSort(array):
+    """(list) -> List
+    returns the same list but sorted ascending."""
+    if len(array)>1:
+        M = len(array)//2
+        Lhalf = array[:M]
+        Rhalf = array[M:]
+
+        mergeSort(Lhalf)
+        mergeSort(Rhalf)
+
+        i=0
+        j=0
+        k=0
+        while i < len(Lhalf) and j < len(Rhalf):
+            if Lhalf[i] < Rhalf[j]:
+                array[k]=Lhalf[i]
+                i=i+1
+            else:
+                array[k]=Rhalf[j]
+                j=j+1
+            k=k+1
+
+        while i < len(Lhalf):
+            array[k]=Lhalf[i]
+            i=i+1
+            k=k+1
+
+        while j < len(Rhalf):
+            array[k]=Rhalf[j]
+            j=j+1
+            k=k+1
+
 table_Rarray_sum = {}
 table_Rarray_max = {}
+table_Rfibonacci = {}
+table_Iarray_sum = {}
+table_Iarray_max = {}
+table_insertionSort = {}
+table_mergeSort = {}
+
 tinit = 0
 
-tinit = time.time()
-Rarray_sum(array_generator(5))
-table_Rarray_sum["5"] = [(time.time() - tinit)]
-tinit = time.time()
-Rarray_sum(array_generator(10))
-table_Rarray_sum["10"] = [(time.time() - tinit)]
-tinit = time.time()
-Rarray_sum(array_generator(15))
-table_Rarray_sum["15"] = [(time.time() - tinit)]
-tinit = time.time()
-Rarray_sum(array_generator(20))
-table_Rarray_sum["20"] = [(time.time() - tinit)]
-tinit = time.time()
-Rarray_sum(array_generator(25))
-table_Rarray_sum["25"] = [(time.time() - tinit)]
-tinit = time.time()
-Rarray_sum(array_generator(30))
-table_Rarray_sum["30"] = [(time.time() - tinit)]
-tinit = time.time()
-Rarray_sum(array_generator(35))
-table_Rarray_sum["35"] = [(time.time() - tinit)]
-tinit = time.time()
-Rarray_sum(array_generator(40))
-table_Rarray_sum["40"] = [(time.time() - tinit)]
+for element in range(5, 40, 5):
+    tinit = time.time()
+    Rarray_sum(array_generator(element))
+    table_Rarray_sum["With "+element] = [(time.time() - tinit)]
 
-tinit = time.time()
-Rarray_max(array_generator(5))
-table_Rarray_max["5"] = [(time.time() - tinit)]
-tinit = time.time()
-Rarray_max(array_generator(10))
-table_Rarray_max["10"] = [(time.time() - tinit)]
-tinit = time.time()
-Rarray_max(array_generator(15))
-table_Rarray_max["15"] = [(time.time() - tinit)]
-tinit = time.time()
-Rarray_max(array_generator(20))
-table_Rarray_max["20"] = [(time.time() - tinit)]
-tinit = time.time()
-Rarray_max(array_generator(25))
-table_Rarray_max["25"] = [(time.time() - tinit)]
-tinit = time.time()
-Rarray_max(array_generator(30))
-table_Rarray_max["30"] = [(time.time() - tinit)]
-tinit = time.time()
-Rarray_max(array_generator(35))
-table_Rarray_max["35"] = [(time.time() - tinit)]
-tinit = time.time()
-Rarray_max(array_generator(40))
-table_Rarray_max["40"] = [(time.time() - tinit)]
+for element in range(5, 40, 5):
+    tinit = time.time()
+    Rarray_max(array_generator(element))
+    table_Rarray_max["With "+element] = [(time.time() - tinit)]
 
-tinit = time.time()
-Rfibonacci(5)
-table_Rfibonacci["5"] = [(time.time() - tinit)]
-tinit = time.time()
-Rfibonacci(10)
-table_Rfibonacci["10"] = [(time.time() - tinit)]
-tinit = time.time()
-Rfibonacci(15)
-table_Rfibonacci["15"] = [(time.time() - tinit)]
-tinit = time.time()
-Rfibonacci(20)
-table_Rfibonacci["20"] = [(time.time() - tinit)]
-tinit = time.time()
-Rfibonacci(25)
-table_Rfibonacci["25"] = [(time.time() - tinit)]
-tinit = time.time()
-Rfibonacci(30)
-table_Rfibonacci["30"] = [(time.time() - tinit)]
-tinit = time.time()
-Rfibonacci(35)
-table_Rfibonacci["35"] = [(time.time() - tinit)]
-tinit = time.time()
-Rfibonacci(40)
-table_Rfibonacci["40"] = [(time.time() - tinit)]
+for element in range(5, 40, 5):
+    tinit = time.time()
+    Rfibonacci(array_generator(element))
+    table_Rfibonacci["With "+element] = [(time.time() - tinit)]
 
-#Iarray_sum(array_generator(5))
-#Iarray_sum(array_generator(10))
-#Iarray_sum(array_generator(15))
-#Iarray_sum(array_generator(20))
-#Iarray_sum(array_generator(25))
-#Iarray_sum(array_generator(30))
-#Iarray_sum(array_generator(35))
-#Iarray_sum(array_generator(40))
+for element in range(5, 40, 5):
+    tinit = time.time()
+    insertionSort(array_generator(element))
+    table_insertionSort["With "+element] = [(time.time() - tinit)]
+
+for element in range(5, 40, 5):
+    tinit = time.time()
+    mergeSort(array_generator(element))
+    table_mergeSort["With "+element] = [(time.time() - tinit)]
