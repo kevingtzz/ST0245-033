@@ -55,4 +55,13 @@ class Lsimple():
             if node.nxt.element > max:
                 max = node.nxt.element
         return __max_value_aux(node.nxt, max)
-        
+
+    def equals(self, lists):
+        eq = True
+        aux = self.first_Node
+        aux2 = lists.first_Node
+        while aux != None and aux2 != None and eq =! False:
+            if aux.element =! aux2.element:
+                eq = False
+            aux = aux.nxt
+            aux2 = aux2.nxt
