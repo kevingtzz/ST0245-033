@@ -1,23 +1,28 @@
 #!/usr/bin/python
 import random
-from matplotlib import pyplot as pl
 import time
+import sys
+
+sys.setrecursionlimit(1000000)
 
 def array_generator(len):
-    """(integer) -> list
-    returns a list with length = integer entered"""
-    array = [0] * len
-    for i in range(len):
-        array[i] = random.randrange(0,100)
-    return array
+    """
+    Generates a list with random values
+    :param len: (integer) lenght of the new array
+    :returns: list
+    """
+    return [(int)(-100*random.random()+100) for e in range(len)]
 
-def Rarray_sum(array):
-    """(list) -> integer
-    returns the sum of all values in the list recursively."""
-    return __Rarray_sum_aux(array, 0, 0)
+def Rarray_sum(list):
+    """
+    Add all the values in the list recursively
+    :param list: list
+    :returns: Integer
+    """
+    return __Rarray_sum_aux(list, 0, 0)
 
 def __Rarray_sum_aux(array, index, sum):
-    if index == len(array):
+    if index >= len(array):
         return sum
     sum = sum + array[index]
     return __Rarray_sum_aux(array, index+1, sum)
@@ -111,37 +116,17 @@ def mergeSort(array):
             j=j+1
             k=k+1
 
-table_Rarray_sum = {}
-table_Rarray_max = {}
-table_Rfibonacci = {}
-table_Iarray_sum = {}
-table_Iarray_max = {}
-table_insertionSort = {}
-table_mergeSort = {}
+arr = array_generator(100000)
+timeinit = time.time()
+sum = Iarray_sum(arr)
+alghttime = (time.time() - timeinit)
+print (sum)
+print (alghttime)
 
-tinit = 0
-
-for element in range(5, 40, 5):
-    tinit = time.time()
-    Rarray_sum(array_generator(element))
-    table_Rarray_sum["With "+element] = [(time.time() - tinit)]
-
-for element in range(5, 40, 5):
-    tinit = time.time()
-    Rarray_max(array_generator(element))
-    table_Rarray_max["With "+element] = [(time.time() - tinit)]
-
-for element in range(5, 40, 5):
-    tinit = time.time()
-    Rfibonacci(array_generator(element))
-    table_Rfibonacci["With "+element] = [(time.time() - tinit)]
-
-for element in range(5, 40, 5):
-    tinit = time.time()
-    insertionSort(array_generator(element))
-    table_insertionSort["With "+element] = [(time.time() - tinit)]
-
-for element in range(5, 40, 5):
-    tinit = time.time()
-    mergeSort(array_generator(element))
-    table_mergeSort["With "+element] = [(time.time() - tinit)]
+print ("---------------")
+arrt = array_generator(10000)
+timeinit = time.time()
+sum = Rarray_max(arrt)
+alghttime = (time.time() - timeinit)
+print (sum)
+print (alghttime)
