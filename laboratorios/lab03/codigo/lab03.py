@@ -12,6 +12,23 @@ def list_mult(list):
          result *= value
      return result
 
+def balance(list):
+    """
+    This method calculates the optimal position for the
+    symbolic placement of a pivot in a list, in
+    such a way that the lateral summations are equitable.
+    :param list: Python list
+    """
+    sum = 0
+    sumaux = 0
+    for value in list:
+        sum += value
+    for index in range(0,len(list)):
+        sumaux += list[index]
+        if sumaux >= sum/2:
+            print ("The pivot must be on " + str(index) + " position.")
+            break
+
 def smartInsert(list, data):
     """
     This method insert a non-repeated value in the entered list.
@@ -25,24 +42,44 @@ def smartInsert(list, data):
     if repeated == False:
         list.append(data)
 
-def get_order(orders, fridges):
-    for order in orders:
-        
+def get_order(client, fridges):
+    sales = []
+    for order in client:
+        frid  = []
+        for fridge in range(0,order[1]):
+            if fridges.empty():
+                frid.append("pending order")
+            else:
+                frid.append(fridges.pop())
+        sales.append((order[0],frid))
+    return sales
+
 
 
 fridges = Stack()
-orders = []
+client = []
 
 for i in range(21):
     fridges.add((i, "Esta es la nevera No." + str(i)))
 
-orders.append(["tienda de pedro", 5])
-orders.append(["tienda de juan", 2])
-orders.append(["tienda de arnulfo",4])
-orders.append(["tienda de mateo", 7])
-orders.append(["tienda de jose", 1])
-orders.append(["tienda de carolina",1])
-orders.append(["tienda de va der waals",2])
-orders.append(["tienda de hugo", 2])
-orders.append(["tienda de caterine",1])
-fridges.printStack()
+client.append(["tienda de pedro", 5])
+client.append(["tienda de juan", 2])
+client.append(["tienda de arnulfo",4])
+client.append(["tienda de mateo", 7])
+client.append(["tienda de jose", 1])
+client.append(["tienda de carolina",1])
+client.append(["tienda de va der waals",2])
+client.append(["tienda de hugo", 2])
+client.append(["tienda de caterine",1])
+
+print (get_order(client, fridges))
+
+"""
+list1 = [10,20,5,3,20,10]
+list2 = [10,2,4,8]
+list3 = [10,2,5,2,11]
+
+balance(list1)
+balance(list2)
+balance(list3)
+"""
