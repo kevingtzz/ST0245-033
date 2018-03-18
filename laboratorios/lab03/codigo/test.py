@@ -4,6 +4,7 @@ from lab03 import *
 #:::::::::::::::::::::::::::list_mult test:::::::::::::::::::::::::::#
 list = [1,2,3,4]
 print (list_mult(list))
+
 #:::::::::::::::::::::::::::smartInsert test:::::::::::::::::::::::::#
 list = [1,2,3,4,5,6,7,8,9]
 smartInsert(list, 10)
@@ -32,7 +33,7 @@ client.append(["tienda de caterine",1])
 
 print (get_order(client, fridges))
 
-"""
+#:::::::::::::::::::::::::      Balance       :::::::::::::::::::::::::::::#
 list1 = [10,20,5,3,20,10]
 list2 = [10,2,4,8]
 list3 = [10,2,5,2,11]
@@ -40,4 +41,6 @@ list3 = [10,2,5,2,11]
 balance(list1)
 balance(list2)
 balance(list3)
-"""
+
+#::::::::::::::::::::::::::::Start-End (Correct order):::::::::::::::::::::::#
+print (start_end("This_is_a[Beiju_]_text_[[]][][]Happy_birthday_to_Tsinghua_University"))
