@@ -31,8 +31,10 @@ class LinkedList:
         self.cabeza = None
         self.cola   = None
 
+
     def empty(self):
         return self.cabeza == None
+
 
     def add_start(self, data):
         """
@@ -42,9 +44,9 @@ class LinkedList:
         :return: Void
         """
         if self.empty():
-            self.cabeza = self.cola = Node(data)
+            self.cabeza = self.cola = self.Node(data)
         else:
-            aux = Node(data)
+            aux = self.Node(data)
             aux.siguiente = self.cabeza
             self.cabeza.anterior = aux
             self.cabeza = aux
@@ -59,21 +61,30 @@ class LinkedList:
         :return: Void
         """
         if self.empty():
-            self.cabeza = self.cola = Node(data)
+            self.cabeza = self.cola = self.Node(data)
         else:
-            aux = Node(data)
+            aux = self.Node(data)
             aux.anterior = self.cola
             self.cola.siguiente = aux
             self.cola = aux
         self.__CircularLink()
 
-    def insert(self, data):
-        aux = Node(data)
-        for i
 
     def __CircularLink(self):
         self.cola.siguiente = self.cabeza
         self.cabeza.anterior = self.cola
+
+
+    def insert(self, index, data):
+        current = self.cabeza
+        for i in range(index-1):
+            current = current.siguiente
+        tmp = self.Node(data)
+        current.anterior.siguiente = tmp
+        tmp.anterior = current.anterior
+        tmp.siguiente = current
+        current.anterior = tmp
+
 
     def delete_end(self):
         """
@@ -118,83 +129,24 @@ class LinkedList:
             return "[]"
         current = self.cabeza
         s = "[" + str(current.data)
-        while current.next != None:
-            current = current.next
-            s += ", " + str(current.data)
+        while True:
+            if current != self.cola:
+                current = current.siguiente
+                s += ", " + str(current.data)
+            else:
+                break
 
         return s + "]"
-
-    def __contains__(self, item):
 
 
     def __len__(self):
         return self.size
 
-# --- Unit Tests
-import unittest
+lista = LinkedList()
+lista.add_start("addstart")
+lista.append("append")
+lista.append("append2")
+lista.add_start("addstart2")
+lista.insert(3, 'insert')
 
-class LinkedList_UnitTests(unittest.TestCase):
-
-    linked_list = LinkedList()
-
-    # Deletion
-
-    def test_empty_linked_list(self):
-
-        linked_list_1 = LinkedList()
-
-        self.assertEqual(str(linked_list_1), "[]")
-
-        linked_list_1.delete_end()
-        self.assertEqual(str(linked_list_1), "[]")
-
-        linked_list_1.add(5)
-
-        self.assertEqual(str(linked_list_1), "[5]")
-
-    def test_non_empty_linked_list(self):
-
-        linked_list_1 = LinkedList()
-
-        linked_list_1.add(6)
-        linked_list_1.add_at_start(1)
-
-        self.assertEqual(str(linked_list_1), "[1, 6]")
-
-        linked_list_1.delete_end()
-
-        self.assertEqual(str(linked_list_1), "[1]")
-
-        linked_list_1.add_at_start(10)
-        linked_list_1.delete_start()
-
-        self.assertEqual(str(linked_list_1), "[1]")
-
-        linked_list_1.add(15)
-        linked_list_1.delete(0)
-
-        self.assertEqual(str(linked_list_1), "[15]")
-
-    # Insertion
-
-    def test_insertion(self):
-
-        linked_list_1 = LinkedList()
-
-        linked_list_1.add_at_start(100)
-
-        self.assertEqual(str(linked_list_1), "[100]")
-
-        linked_list_1.add_at_start(200)
-        linked_list_1.delete_end()
-
-        self.assertEqual(str(linked_list_1), "[200]")
-
-        linked_list_1.add(300)
-        linked_list_1.add(500)
-        linked_list_1.add_at_start(-100)
-
-        self.assertEqual(str(linked_list_1), "[-100, 200, 300, 500]")
-
-suite = unittest.TestLoader().loadTestsFromTestCase(LinkedList_UnitTests)
-unittest.TextTestRunner(verbosity=2).run(suite)
+print(lista.__str__())
