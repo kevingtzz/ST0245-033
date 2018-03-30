@@ -1,11 +1,13 @@
 #!/usr/bin/python
 from lab03 import *
+from LinkedList import *
 
-#:::::::::::::::::::::::::::list_mult test:::::::::::::::::::::::::::#
+print(":::::::::::::::::::::::::::list_mult test::::::::::::::::::::::::::::::\n")
 list = [1,2,3,4]
 print (list_mult(list))
+print ("\n")
 
-#:::::::::::::::::::::::::::smartInsert test:::::::::::::::::::::::::#
+print(":::::::::::::::::::::::::::smartInsert test:::::::::::::::::::::::::\n")
 list = [1,2,3,4,5,6,7,8,9]
 smartInsert(list, 10)
 smartInsert(list, 11)
@@ -13,8 +15,10 @@ smartInsert(list, 9)
 smartInsert(list, 7)
 smartInsert(list, 0)
 print (list)
+print ("\n")
 
-#::::::::::::::::::::::::::Fridges Orders::::::::::::::::::::::::::::#
+print ('::::::::::::::::::::::::::Fridges Orders::::::::::::::::::::::::::::\n')
+
 fridges = Stack()
 client = []
 
@@ -32,8 +36,9 @@ client.append(["tienda de hugo", 2])
 client.append(["tienda de caterine",1])
 
 print (get_order(client, fridges))
+print ("\n")
 
-#:::::::::::::::::::::::::      Balance       :::::::::::::::::::::::::::::#
+print(":::::::::::::::::::::::::      Balance       :::::::::::::::::::::::::::::\n")
 list1 = [10,20,5,3,20,10]
 list2 = [10,2,4,8]
 list3 = [10,2,5,2,11]
@@ -41,75 +46,43 @@ list3 = [10,2,5,2,11]
 balance(list1)
 balance(list2)
 balance(list3)
+print ("\n")
 
-#::::::::::::::::::::::::::::Start-End (Correct order):::::::::::::::::::::::#
+print("::::::::::::::::::::::::::::Start-End (Correct order):::::::::::::::::::::::\n")
+
 print (start_end("This_is_a[Beiju_]_text_[[]][][]Happy_birthday_to_Tsinghua_University"))
+print ("\n")
 
-# --- Unit Tests
-import unittest
+print("::::::::::::::::::::::::::::Circular LinkedList Implementation::::::::::::::\n")
 
-class LinkedList_UnitTests(unittest.TestCase):
+lista = LinkedList()
+lista.add_start("addstart")
+lista.append("append")
+lista.append("append2")
+lista.add_start("addstart2")
+lista.insert(3, 'insert')
+lista.delete_end()
+lista.delete_start()
+lista.delete(0)
+print (lista.get(1))
+lista.add_start(1)
+lista.append(234)
+lista.append(52345)
+lista.append(8)
+lista.append(344)
+lista.append(523)
+lista.append(8869)
+print (lista.contains(8))
+print (lista.contains(5))
+print (lista.contains("append"))
+print(lista.__str__())
+print ("\n")
 
-    linked_list = LinkedList()
+print("::::::::::::::::::::::::::::::::1.7 (Bank queues):::::::::::::::::::::::::::\n")
 
-    # Deletion
-
-    def test_empty_linked_list(self):
-
-        linked_list_1 = LinkedList()
-
-        self.assertEqual(str(linked_list_1), "[]")
-
-        linked_list_1.delete_end()
-        self.assertEqual(str(linked_list_1), "[]")
-
-        linked_list_1.add(5)
-
-        self.assertEqual(str(linked_list_1), "[5]")
-
-    def test_non_empty_linked_list(self):
-
-        linked_list_1 = LinkedList()
-
-        linked_list_1.add(6)
-        linked_list_1.add_at_start(1)
-
-        self.assertEqual(str(linked_list_1), "[1, 6]")
-
-        linked_list_1.delete_end()
-
-        self.assertEqual(str(linked_list_1), "[1]")
-
-        linked_list_1.add_at_start(10)
-        linked_list_1.delete_start()
-
-        self.assertEqual(str(linked_list_1), "[1]")
-
-        linked_list_1.add(15)
-        linked_list_1.delete(0)
-
-        self.assertEqual(str(linked_list_1), "[15]")
-
-    # Insertion
-
-    def test_insertion(self):
-
-        linked_list_1 = LinkedList()
-
-        linked_list_1.add_at_start(100)
-
-        self.assertEqual(str(linked_list_1), "[100]")
-
-        linked_list_1.add_at_start(200)
-        linked_list_1.delete_end()
-
-        self.assertEqual(str(linked_list_1), "[200]")
-
-        linked_list_1.add(300)
-        linked_list_1.add(500)
-        linked_list_1.add_at_start(-100)
-
-        self.assertEqual(str(linked_list_1), "[-100, 200, 300, 500]")
-
-suite = unittest.TestLoader().loadTestsFromTestCase(LinkedList_UnitTests)
-unittest.TextTestRunner(verbosity=2).run(suite)
+fila1 = ["kevin", "carolina", "david", "yorman", "cana", "yasuri", "Laura"]
+fila2 = ["miguel", "pipe", "flor", "jeffrey", "Pamela"]
+fila3 = ["alejo", "soda", "cesar", "jose", "mateo", "coco", "luis", "andrea", "Camila"]
+fila4 = ["manuela", "chicle", "bladimir", "Rogelio", "Ramon"]
+test = Bank(fila1, fila2, fila3, fila4)
+test.attend()
