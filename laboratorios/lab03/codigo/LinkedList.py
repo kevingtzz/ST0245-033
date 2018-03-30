@@ -32,7 +32,7 @@ class LinkedList:
         self.cola   = None
 
 
-    def empty(self):
+    def __empty(self):
         return self.cabeza == None
 
 
@@ -43,7 +43,7 @@ class LinkedList:
         :param data: The new Node data.
         :return: Void
         """
-        if self.empty():
+        if self.__empty():
             self.cabeza = self.cola = self.Node(data)
         else:
             aux = self.Node(data)
@@ -60,7 +60,7 @@ class LinkedList:
         :param data: The new Node data.
         :return: Void
         """
-        if self.empty():
+        if self.__empty():
             self.cabeza = self.cola = self.Node(data)
         else:
             aux = self.Node(data)
@@ -76,14 +76,24 @@ class LinkedList:
 
 
     def insert(self, index, data):
-        current = self.cabeza
-        for i in range(index-1):
-            current = current.siguiente
-        tmp = self.Node(data)
-        current.anterior.siguiente = tmp
-        tmp.anterior = current.anterior
-        tmp.siguiente = current
-        current.anterior = tmp
+        """
+        insert data in given index.
+        :param index: Integer index.
+        :param data: Anything.
+        :returns: voidself.
+        """
+        if self.cabeza != None:
+            current = self.cabeza
+            for i in range(index-1):
+                current = current.siguiente
+            tmp = self.Node(data)
+            current.anterior.siguiente = tmp
+            tmp.anterior = current.anterior
+            tmp.siguiente = current
+            current.anterior = tmp
+        else:
+            self.cabeza = self.cola = self.Node(data)
+            self.__CircularLink()
 
 
     def delete_end(self):
@@ -92,6 +102,12 @@ class LinkedList:
         LinkedList.
         :return: Void
         """
+        if self.cabeza != None:
+            self.cola.anterior.siguiente = self.cabeza
+            self.cabeza.anterior = self.cola.anterior
+            self.cola = self.cola.anterior
+        else:
+            print ("The list is empty")
 
     def delete_start(self):
         """
@@ -99,28 +115,60 @@ class LinkedList:
         on the LinkedList.
         :return: Void
         """
+        if self.cabeza != None:
+            self.cabeza = self.cabeza.siguiente
+            self.cabeza.anterior = self.cola
+        else:
+            print ("the list is empty.")
 
-    def delete(self, i):
+    def delete(self, index):
         """
         Deletes the element at position i.
         :param i: Element's index
         :return: Void
         """
+        if self.__empty():
+            print ("The list is empty.")
+        else:
+            current = self.cabeza
+            for node in range(index):
+                current = current.siguiente
+                if current == self.cola:
+                    self.delete_end()
+                elif current == self.cabeza:
+                    self.delete_start()
+                else:
+                    current.anterior.siguiente = current.siguiente
+                    current.siguiente.anterior = current.anterior
 
 
-    def get(self, i):
+
+    def get(self, index):
         """
         Returns the ith linked element.
         :param index:
         :return: Node
         """
+        if self.__empty():
+            return None
+        current = self.cabeza
+        for node in range(index):
+            current = current.siguiente
+        return current.data
 
 
-    def print_reversed(self):
-        """
-        Prints the list in reverse order.
-        :return: Void
-        """
+    def contains(self, data):
+        if self.__empty():
+            return False
+        current = self.cabeza
+        while True:
+            if current.data == data:
+                return True
+            current = current.siguiente
+            if current == self.cola:
+                break
+        return False
+
 
 
     def __str__(self):
@@ -141,12 +189,3 @@ class LinkedList:
 
     def __len__(self):
         return self.size
-
-lista = LinkedList()
-lista.add_start("addstart")
-lista.append("append")
-lista.append("append2")
-lista.add_start("addstart2")
-lista.insert(3, 'insert')
-
-print(lista.__str__())

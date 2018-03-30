@@ -98,3 +98,64 @@ def start_end(str):
     for letter in lstr:
         nstr += letter
     return nstr
+
+
+class Bank:
+    """
+    Simulation of four bank queues attended by two employeesself.
+    Args:
+        list (queue1): A list of clients representing a queue.
+        list (queue2): A list of clients representing a queue.
+        list (queue3): A list of clients representing a queue.
+        list (queue4): A list of clients representing a queue.
+    """
+    def __init__(self, queue1, queue2, queue3, queue4):
+        self.queue1 = queue1
+        self.queue2 = queue2
+        self.queue3 = queue3
+        self.queue4 = queue4
+
+    def attend(self):
+        """
+        representation of the behavior of the rows of the bank
+        to be served by two employees.
+        Args:
+            None.
+        Returns:
+            void.
+        """
+        while True:
+            if len(self.queue1) != 0:
+                print ("1 attends to " + self.queue1.pop(0))
+            elif len(self.queue2) != 0:
+                print ("1 attends to " + self.queue2.pop(0))
+
+            if len(self.queue3) != 0:
+                print ("2 attends to " + self.queue3.pop(0))
+            elif len(self.queue4) != 0:
+                print ("2 attends to " + self.queue4.pop(0))
+
+            if len(self.queue2) != 0:
+                print ("1 attends to " + self.queue2.pop(0))
+            elif len(self.queue1) != 0:
+                print ("1 attends to " + self.queue1.pop(0))
+
+            if len(self.queue4) != 0:
+                print ("2 attends to " + self.queue4.pop(0))
+            elif len(self.queue3) != 0:
+                print ("2 attends to " + self.queue3.pop(0))
+
+            if len(self.queue3) == 0 and len(self.queue4) == 0:
+                if len(self.queue1) >= len(self.queue2) and len(self.queue1) != 0:
+                    self.queue3.append(self.queue1.pop())
+                elif len(self.queue2) != 0:
+                    self.queue3.append(self.queue2.pop())
+
+            if len(self.queue1) == 0 and len(self.queue2) == 0:
+                if len(self.queue3) >= len(self.queue4) and len(self.queue3) != 0:
+                    self.queue2.append(self.queue3.pop())
+                elif len(self.queue4) != 0:
+                    self.queue3.append(self.queue4.pop())
+
+            if len(self.queue1)+len(self.queue2)+len(self.queue3)+len(self.queue4) == 0:
+                break
